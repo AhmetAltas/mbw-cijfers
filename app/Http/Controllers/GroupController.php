@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Group;
 use App\Group_user;
-use App\Grade;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -55,7 +56,8 @@ class GroupController extends Controller
         $group = Group::findOrFail($id);
         $students = $group->getUsers;
 
-        return view('groups.show', compact('group', 'students',));//
+        return view('groups.show', compact('group', 'students'));//
+
     }
 
     /**

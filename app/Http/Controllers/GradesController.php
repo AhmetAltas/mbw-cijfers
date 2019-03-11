@@ -7,6 +7,7 @@ use App\Grade;
 use Illuminate\Http\Request;
 use Auth;
 
+
 class GradesController extends Controller
 {
     /**
@@ -145,6 +146,7 @@ class GradesController extends Controller
                 return view('grades.index')->with('grades', $grades);
             }
         }
+
     }
 
     public function subjects()

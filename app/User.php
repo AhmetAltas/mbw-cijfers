@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'classname', 'role', 'email', 'password',
+        'name', 'prefix', 'lastname', 'classname', 'role', 'email', 'password',
     ];
 
     /**
@@ -31,12 +31,11 @@ class User extends Authenticatable
          return $this->hasMany('App\Grade');
     }
 
-    public function lastGrade()
-    {
-        $lastGrade = $this->hasMany('App\Grade')
-                        ->groupBy('subject')
-                        ->order_by('updated_at', 'desc')
-                        ->first();
-        return $lastGrade;
+    public function isAdmin() {
+        if ($this->role === "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
