@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'classname', 'role', 'email', 'password',
     ];
 
     /**
@@ -25,4 +25,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function grades()
+    {
+         return $this->hasMany('App\Grade');
+    }
+
+    public function lastGrade()
+    {
+        $lastGrade = $this->hasMany('App\Grade')
+                        ->groupBy('subject')
+                        ->order_by('updated_at', 'desc')
+                        ->first();
+        return $lastGrade;
+    }
 }
